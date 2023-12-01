@@ -1,0 +1,3 @@
+-Clean up code
+-Create an interactive interface instead of console
+-Possible multiplayer
