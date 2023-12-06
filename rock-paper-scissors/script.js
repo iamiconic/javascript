@@ -10,10 +10,13 @@ function computerChoice() {
     let computerPick = ""
     if (computerRandom === 1) {
         computerPick = "rock";
+        computerSelectionImg.src = 'images/Rock.png';
     } else if (computerRandom === 2) {
         computerPick = "paper";
+        computerSelectionImg.src = 'images/Paper.png';
     } else {
         computerPick = "scissors";
+        computerSelectionImg.src = 'images/Scissors.png';
     }
     return computerPick
 }
@@ -22,23 +25,26 @@ function computerChoice() {
 let userPick = document.querySelector('.choice.rock');
 userPick.addEventListener('click', function () {
     userPick = "rock";
+    playerSelectionImg.src = 'images/Rock.png';
     gameStart(userPick, computerChoice());
 });
 userPick = document.querySelector('.choice.paper');
 userPick.addEventListener('click', function () {
     userPick = "paper";
+    playerSelectionImg.src = 'images/Paper.png';
     gameStart(userPick, computerChoice());
 });
 userPick = document.querySelector('.choice.scissors');
 userPick.addEventListener('click', function () {
     userPick = "scissors";
+    playerSelectionImg.src = 'images/Scissors.png';
     gameStart(userPick, computerChoice());
 });
 
 // Setting up a text field to get game status updates instead of printing to console
 let gameText = document.querySelector('.game-text');
-let playerSelectionText = document.querySelector('.player-pick');
-let computerSelectionText = document.querySelector('.computer-pick');
+let playerSelectionImg = document.querySelector('.player-pick');
+let computerSelectionImg = document.querySelector('.computer-pick');
 let roundText = document.querySelector('.round-text');
 let playerPointText = document.querySelector('.player-points');
 let computerPointText = document.querySelector('.computer-points');
@@ -50,8 +56,6 @@ function gameStart(userPick, computerPick) {
 ${round}`;
 
     if (userPick === computerPick) {
-        playerSelectionText.innerText = `" ${userPick} "`;
-        computerSelectionText.innerText = `" ${computerPick} "`;
         gameText.innerText = `You picked ${userPick}
         Computer chose ${computerPick}
         It's a Tie! Restart Round!`;
@@ -64,8 +68,6 @@ ${round}`;
 
         playerPointText.innerText = `Player
         ${playerPoints}`;
-        playerSelectionText.innerText = `" ${userPick} "`;
-        computerSelectionText.innerText = `" ${computerPick} "`;
         gameText.innerText = `You picked ${userPick}
         Computer chose ${computerPick}
         You win round ${round}!`;
@@ -73,10 +75,7 @@ ${round}`;
     } else {
         computerPoints += 1;
         computerPointText.innerText = `Computer
-        ${computerPoints}`;
-
-        playerSelectionText.innerText = `" ${userPick} "`;
-        computerSelectionText.innerText = `" ${computerPick} "`;
+        ${computerPoints}`;;
         gameText.innerText = `You picked ${userPick}
         Computer chose ${computerPick}
         You lose round ${round}!`;
