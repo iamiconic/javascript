@@ -18,7 +18,7 @@ body {
     align-items: center;
     border: 2px solid lime;
     width: 90vw;
-    margin-top: 1vh;
+    margin-top: .1vh;
     background: rgba(0, 0, 0, .6);
 }
 
