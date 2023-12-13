@@ -65,7 +65,7 @@ container.addEventListener('mouseover', event => {
     }
 });
 
-document, addEventListener('mouseuo', event => {
+document, addEventListener('mouseup', event => {
     if (event.button === 2) {
         isRightMouseDown = false;
     }
