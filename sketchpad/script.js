@@ -25,6 +25,7 @@ function userInput() {
     while (userDimension === null || userDimension < 0 || userDimension > 100 || isNaN(userDimension)) {
         userDimension = prompt('Pick a number that is less than 100 for your dimensions', 16);
     }
+    alert('Please use your left mouse button to draw and your right mouse to erase. Enjoy!')
     gridBuild(userDimension)
 }
 
