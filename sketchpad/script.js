@@ -2,11 +2,20 @@ const container = document.querySelector('.container');
 const button = document.querySelectorAll('.rainbow-button');
 const body = document.body;
 const audio = new Audio('rainbow.mp3');
+const smallButton = document.querySelector('.small-button');
+const mediumButton = document.querySelector('.medium-button');
+const largeButton = document.querySelector('.large-button');
+const introHeader = document.querySelector('.intro-header');
+const introPara = document.querySelector('.intro-para');
 
 let isLeftMouseDown = false;
 let isRightMouseDown = false;
-
 let rainbowMode = false;
+
+button.forEach(buttons => {
+    buttons.style.display = 'none';
+});
+
 
 // function that will take in user defined dimensions and systematically create a row n times and appenend n cells to each row to make a perfect grid
 function gridBuild(dimension) {
@@ -25,15 +34,7 @@ function gridBuild(dimension) {
         container.appendChild(row);
     }
 }
-// ask for user input for sketchpad dimensions
-function userInput() {
-    userDimension = null;
-    while (userDimension === null || userDimension < 0 || userDimension > 100 || isNaN(userDimension)) {
-        userDimension = prompt('Pick a number that is less than 100 for your dimensions', 16);
-    }
-    alert('Please use your left mouse button to draw and your right mouse to erase. Enjoy!')
-    gridBuild(userDimension)
-}
+
 
 // functions to apply changes to both buttons
 function changeButton() {
@@ -67,6 +68,51 @@ function changeButton() {
 function playAudio() {
     audio.play()
 }
+
+// Event listeners for small,medium, large grid sizes to start the game
+
+smallButton.addEventListener('click', () => {
+    smallButton.style.display = 'none';
+    mediumButton.style.display = 'none';
+    largeButton.style.display = 'none';
+    introHeader.style.display = 'none';
+    introPara.style.display = 'none';
+    container.style.flexDirection = 'column';
+    container.style.minWidth = '600px';
+    container.style.minHeight = '600px';
+    button.forEach(buttons => {
+        buttons.style.display = "inline";
+    });
+    gridBuild(10);
+})
+mediumButton.addEventListener('click', () => {
+    smallButton.style.display = 'none';
+    mediumButton.style.display = 'none';
+    largeButton.style.display = 'none';
+    introHeader.style.display = 'none';
+    introPara.style.display = 'none';
+    container.style.flexDirection = 'column';
+    container.style.minWidth = '600px';
+    container.style.minHeight = '600px';
+    button.forEach(buttons => {
+        buttons.style.display = "inline";
+    });
+    gridBuild(20);
+})
+largeButton.addEventListener('click', () => {
+    smallButton.style.display = 'none';
+    mediumButton.style.display = 'none';
+    largeButton.style.display = 'none';
+    introHeader.style.display = 'none';
+    introPara.style.display = 'none';
+    container.style.flexDirection = 'column';
+    container.style.minWidth = '600px';
+    container.style.minHeight = '600px';
+    button.forEach(buttons => {
+        buttons.style.display = "inline";
+    });
+    gridBuild(40);
+})
 
 // Create a series of mouse events, mousedown, mouseover and mouseup to begin drawing and end drawing and right clicking to return the cell back to white.
 container.addEventListener('mousedown', event => {
@@ -129,9 +175,3 @@ button.forEach(button => {
 
 
 
-userInput()
-
-
-/*
-instead of pop ups display instructions and a button to start on page with dimension selector
-*/ 

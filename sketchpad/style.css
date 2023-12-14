@@ -25,9 +25,18 @@ body {
 
 .container {
     display: flex;
+    flex-direction: row;
+    /* 
     flex-direction: column;
     min-width: 500px;
     min-height: 500px;
+    */
+}
+
+.start-button {
+    position: absolute;
+    top: 50vh;
+    left: 4vw;
 }
 
 .grid-row {
