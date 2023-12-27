@@ -3,6 +3,8 @@ body {
     justify-content: center;
     align-items: center;
     padding-top: 10vh;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 40px;
 }
 
 
@@ -11,35 +13,59 @@ body {
     height: 580px;
     border: 2px solid black;
     border-radius: 8px;
+    background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
 }
 
 .calc-screen {
     margin: 15px 15px 5px 15px;
+    padding-right: 10px;
     height: 150px;
     border: 2px solid black;
     border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    font-size: 65px;
+    background: lightgray;
+    flex-direction: column;
+}
+
+.calc-equation {
+    font-size: 40px;
+
 }
 
 .calc-cleardelete {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+
 }
 
-.calc-clear {
+.clear {
     margin: 10px 0px 0px 15px;
     height: 80px;
     width: 300px;
     border: 2px solid black;
     border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: lightgray;
+    user-select: none;
 }
 
-.calc-delete {
+.delete {
     margin: 10px 15px 10px 15px;
     height: 80px;
     width: 300px;
     border: 2px solid black;
     border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: lightgray;
+    user-select: none;
 }
 
 .calc-numbers {
@@ -57,4 +83,9 @@ body {
     width: 80px;
     display: flex;
     flex: 0 0 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: lightgray;
+    user-select: none;
 }
