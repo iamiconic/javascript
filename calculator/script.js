@@ -29,7 +29,6 @@ buttons.forEach(element => {
         const isClear = element.classList.contains('clear');
         const isDelete = element.classList.contains('delete');
 
-
         if (isDecimal) {
             if (!decimalUsed) {
                 displayResult.textContent += element.textContent;
@@ -55,7 +54,9 @@ buttons.forEach(element => {
         }
         else if (num1 === null) {
             if (isNumber) {
-                if (displayResult.textContent == '0') {
+                if (displayResult.textContent.length >= 8) {
+                }
+                else if (displayResult.textContent == '0') {
                     displayResult.textContent = '';
                     displayResult.textContent += element.textContent;
                 }
@@ -74,12 +75,14 @@ buttons.forEach(element => {
         }
         else if (num1 !== null) {
             if (isNumber) {
-                if (displayResult.textContent.slice(0, 2) === '0.') {
-                    displayResult.textContent = '0.';
-                } else if (displayResult.textContent[0] === '0') {
-                    displayResult.textContent = ''
+                if (displayResult.textContent.length >= 8) {
+
+                }
+                else if (displayResult.textContent == '0' || displayResult.textContent == num1) {
+                    displayResult.textContent = '';
                     displayResult.textContent += element.textContent;
-                } else {
+                }
+                else {
                     displayResult.textContent += element.textContent;
                 }
             }
@@ -113,13 +116,28 @@ function operate(num1, operator, num2) {
     num2 = parseFloat(num2);
 
     if (operator == '+') {
-        return num1 + num2;
+        result = num1 + num2;
+        resultString = result.toString();
+        if (resultString.length > 8) {
+            return result.toExponential(3);
+        }
+        return result;
     }
     else if (operator == '-') {
-        return num1 - num2;
+        result = num1 - num2;
+        resultString = result.toString();
+        if (resultString.length > 8) {
+            return result.toExponential(3);
+        }
+        return result;
     }
     else if (operator == '*') {
-        return num1 * num2;
+        result = num1 * num2;
+        resultString = result.toString()
+        if (resultString.length > 8) {
+            return result.toExponential(3);
+        }
+        return result
     }
     else if (operator == '/') {
         if (num2 == 0) {
@@ -127,7 +145,39 @@ function operate(num1, operator, num2) {
             return 0
         }
         else {
-            return num1 / num2;
+            result = num1 / num2;
+            resultString = result.toString();
+            if (resultString.length > 8) {
+                return result.toExponential(3);
+            }
+            return result;
         }
     }
 }
+document.addEventListener('keydown', function (event) {
+    const key = event.key;
+
+    const keyToClassMapping = {
+        '0': 'zero', '1': 'one', '2': 'two', '3': 'three',
+        '4': 'four', '5': 'five', '6': 'six',
+        '7': 'seven', '8': 'eight', '9': 'nine',
+        '.': 'decimal', '=': 'equals', 'Enter': 'equals',
+        '+': 'addition', '-': 'subtract', '*': 'multiply', '/': 'divide',
+        'Escape': 'clear', 'Backspace': 'delete'
+    };
+
+    let buttonClass = keyToClassMapping[key];
+
+    if (buttonClass) {
+        const selector = `.button.${buttonClass}`;
+        const button = document.querySelector(selector);
+
+        if (button) {
+            const mouseDownEvent = new MouseEvent('mousedown', { bubbles: true });
+            button.dispatchEvent(mouseDownEvent);
+
+            const mouseUpEvent = new MouseEvent('mouseup', { bubbles: true });
+            button.dispatchEvent(mouseUpEvent);
+        }
+    }
+});
