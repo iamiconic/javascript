@@ -89,7 +89,6 @@ buttons.forEach(element => {
             }
             else if (isOperator) {
                 if (continueCalc === true) {
-                    console.log('test')
                     operator = element.textContent;
                     displayEquation.textContent = num1 + operator;
                     displayResult.textContent = '0';
