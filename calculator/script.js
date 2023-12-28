@@ -5,6 +5,7 @@ let num1 = null;
 let num2 = null;
 let operator = null;
 let decimalUsed = false;
+let continueCalc = false;
 
 
 buttons.forEach(element => {
@@ -87,14 +88,23 @@ buttons.forEach(element => {
                 }
             }
             else if (isOperator) {
-                num2 = displayResult.textContent;
-                num1 = operate(num1, operator, num2);
-                displayResult.textContent = num1
-                operator = element.textContent;
-                displayEquation.textContent = num1 + operator;
-                displayResult.textContent = '0';
-                num2 = null;
-                decimalUsed = false;
+                if (continueCalc === true) {
+                    console.log('test')
+                    operator = element.textContent;
+                    displayEquation.textContent = num1 + operator;
+                    displayResult.textContent = '0';
+                    continueCalc = false;
+                } else {
+                    num2 = displayResult.textContent;
+                    result = operate(num1, operator, num2);
+                    displayResult.textContent = result
+                    displayEquation.textContent = num1 + operator + num2 + "=";
+                    num1 = result;
+                    num2 = null;
+                    operator = null;
+                    decimalUsed = false;
+                    continueCalc = true;
+                }
             }
             else if (isEquals) {
                 if (num1 !== null && operator !== null) {
@@ -104,7 +114,9 @@ buttons.forEach(element => {
                     displayEquation.textContent = num1 + operator + num2 + "=";
                     num1 = result;
                     num2 = null;
+                    operator = null;
                     decimalUsed = false;
+                    continueCalc = true;
                 }
             }
         }
